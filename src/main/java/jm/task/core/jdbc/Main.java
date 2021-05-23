@@ -15,19 +15,19 @@ public class Main {
 
 
     public static void main(String[] args) throws SQLException {
-        UserServiceImpl usDa = new UserServiceImpl();
-        //usDa.createUsersTable();
-        //usDa.saveUser("Ivan", "Ivanov", 25);
-        //usDa.saveUser("Petr", "Petrov", 25);
-        //usDa.removeUserById(1);
-        //usDa.cleanUsersTable();
-/*        List<User> list = usDa.getAllUsers();
+        UserServiceImpl u = new UserServiceImpl();
+//        u.createUsersTable();
+//        u.createUsersTable();
+        u.dropUsersTable();
+        u.dropUsersTable();
 
-        for(User u : list){
-            System.out.println(u);
-        }*/
-        //usDa.dropUsersTable();
-
-
+//        UserServiceImpl u = new UserServiceImpl();
+//        for (User user : u.getAllUsers()) {
+//            System.out.println(user);
+//        }
+//        u.saveUser("ivan","ivanov", 12);
+//        for (User user : u.getAllUsers()) {
+//            System.out.println(user);
+//        }
     }
 }
