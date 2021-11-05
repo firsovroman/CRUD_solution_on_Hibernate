@@ -1,54 +1,14 @@
 package jm.task.core.jdbc.util;
 
-import java.sql.*;
 import java.util.Properties;
 
 import jm.task.core.jdbc.model.User;
 import org.hibernate.*;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.*;
 import org.hibernate.service.ServiceRegistry;
 
 public class Util {  // Lazy Initialization
-
-    private static Util INSTANCE;
-
-    private static final String URL = "jdbc:mysql://localhost:3306/sys";
-    private static final String LOGIN = "root";
-    private static final String PASSWORD = "root";
-    private Connection connection;
-
-    public Util() {
-        try {
-            connection = DriverManager.getConnection(URL, LOGIN, PASSWORD);
-            System.out.println("Connection successful");
-        } catch (SQLException throwables) {
-            System.out.println("Не удалось установить connection");
-        }
-    }
-
-    public static Util getInstance() {
-        if (INSTANCE == null) {
-            INSTANCE = new Util();
-        }
-        return INSTANCE;
-    }
-
-    public Connection getConnection () {
-        return connection;
-    }
-
-    public void closeConnection () throws SQLException {
-        if(!connection.isClosed()) {
-            connection.close();
-            System.out.println("Connection закрыт");
-        }
-    }
-
-// ***************************************************************************************
-// ***************************************************************************************
 
     private static SessionFactory sessionFactory;
 
@@ -57,7 +17,6 @@ public class Util {  // Lazy Initialization
             try {
                 Configuration configuration = new Configuration();
 
-                // Hibernate settings equivalent to hibernate.cfg.xml's properties
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
                 settings.put(Environment.URL, "jdbc:mysql://localhost:3306/sys?useSSL=false");
@@ -68,7 +27,6 @@ public class Util {  // Lazy Initialization
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.FORMAT_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                //settings.put(Environment.HBM2DDL_AUTO, "update");
 
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(User.class);
