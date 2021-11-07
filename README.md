@@ -1,4 +1,4 @@
-# project_1_1_4
+# CRUD_solution_on_Hibernate
 In this project I have implemented a simple CRUD application in Hibernath
 
 
